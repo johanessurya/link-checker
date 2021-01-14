@@ -1,8 +1,10 @@
 var DataTableManager = function(datatableElement) {
     this.el = datatableElement;
+    this.id = 0;
 
-    this.add = function(id, url, status) {
-        this.el.row.add([id, url, status]);
+    this.add = function(url, status) {
+        this.id++;
+        this.el.row.add([this.id, url, status]);
     }
 
     this.draw = function() {
@@ -15,7 +17,7 @@ var DataTableManager = function(datatableElement) {
 }
 
 var BatchAjax = function (urlList, dataTableManager) {
-    this.apiUrl = 'test.json';
+    this.apiUrl = 'ajax_check_url.php';
 
     this.list = urlList;
     this.manager = dataTableManager;
@@ -26,7 +28,7 @@ var BatchAjax = function (urlList, dataTableManager) {
         $.get(this.apiUrl, function(data) {
             var json = JSON.parse(data);
 
-            manager.add(json.id, json.url, json.status);
+            manager.add(json.url, json.status);
             manager.draw();
 
             if(vm.list.length > 0) {

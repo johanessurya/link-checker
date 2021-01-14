@@ -1,2 +1,5 @@
 /nbproject
 /bower_components
+/vendor
+env.php
+composer.phar
