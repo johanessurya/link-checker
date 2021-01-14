@@ -33,8 +33,10 @@ var BatchAjax = function (urlList, dataTableManager) {
         $.get(this.apiUrl + '?url=' + x, function(data) {
             var json = JSON.parse(data);
 
-            manager.add(json.url, json.status);
-            manager.draw();
+            if (json.status) {
+                manager.add(json.url, json.status);
+                manager.draw();
+            }
 
             if(vm.list.length > 0) {
                 vm.run(callback);
@@ -64,7 +66,7 @@ var prepareEventListener = function(manager) {
 var manager = null;
 $(document).ready(function() {
     // Preparation
-    var el = $("#result-table").DataTable()
+    var el = $("#result-table").DataTable();
     el.clear();
     manager = new DataTableManager(el);
 
