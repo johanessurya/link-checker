@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="bower_components/admin-lte/dist/css/AdminLTE.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
+    <script src="bower_components/underscore/underscore-min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,18 +29,18 @@
   <body class="hold-transition login-page">
     <div class="col-xs-12">
       <div class="login-logo">
-        <a href="../../index2.html"><b>Link</b>Checker</a>
+        <a href="/"><b>Link</b>Checker</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Paste Your Link List Here</p>
         <form id="form1" method="post">
           <div class="form-group">
             <label></label>
-            <textarea class="form-control" rows="5" placeholder="Enter ...
-Enter ..."></textarea>
+            <textarea id="url-list" class="form-control" rows="5" placeholder="URL 1...
+URL 2..."></textarea>
           </div>
           <div class="row">
-              <button type="submit" class="btn btn-primary btn-block btn-flat btn-lg">Sign In</button>
+              <button id="submit-button" type="submit" class="btn btn-primary btn-block btn-flat btn-lg">Sign In</button>
           </div>
         </form>
       </div><!-- /.login-box-body -->

@@ -2,15 +2,35 @@
 require 'env.php';
 require 'vendor/autoload.php';
 
-$url = BASE_URL;
-
-$client = new GuzzleHttp\Client();
-$res = $client->request('GET', $url);
-$status = $res->getStatusCode();
-
-$value = [
+$jsonError = [
     'id' => null,
-    'url' => $url,
-    'status' => $status
+    'url' => 'Please check your URL',
+    'status' => ''
 ];
-echo json_encode($value);
+
+if (!isset($_GET['url'])) {
+    echo json_encode($jsonError);
+    die;
+}
+
+
+$url = $_GET['url'];
+if (empty($url)) {
+    echo json_encode($jsonError);
+    die;
+}
+
+try {
+    $client = new GuzzleHttp\Client();
+    $res = $client->request('GET', trim($url));
+    $status = $res->getStatusCode();
+
+    $value = [
+        'id' => null,
+        'url' => $url,
+        'status' => $status
+    ];
+    echo json_encode($value);
+} catch(\Exception $e) {
+    echo json_encode($jsonError);
+}
