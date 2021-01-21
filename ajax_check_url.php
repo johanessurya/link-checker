@@ -46,8 +46,18 @@ try {
         'status_name' => $statusName,
         'is_true' => 0
     ];
-
+} catch(GuzzleHttp\Exception\ConnectException $e) {
+    $statusCode = "Couldn't resolve host";
+    $statusName = null;
+    $value = [
+        'id' => null,
+        'url' => $url,
+        'status' => $statusCode,
+        'status_name' => $statusName,
+        'is_true' => 0
+    ];
 } catch(\Exception $e) {
+    // var_dump($e, $e->getMessage()); die;
     $value = $jsonError;
 }
 
