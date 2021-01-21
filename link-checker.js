@@ -60,7 +60,7 @@ var prepareEventListener = function(manager) {
         manager.clear();
         var batchAjax = new BatchAjax(list, manager);
         batchAjax.run(function() {
-            $('#submit-button').text('Submit');
+            $('#submit-button').text('Check');
         });
     });
 }

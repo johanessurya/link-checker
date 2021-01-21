@@ -32,7 +32,7 @@
         <a href="/"><b>Link</b>Checker</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Paste Your Link List Here</p>
+        <p class="login-box-msg">Paste your URL list here</p>
         <form id="form1" method="post">
           <div class="form-group">
             <label></label>
@@ -40,7 +40,7 @@
 URL 2..."></textarea>
           </div>
           <div class="row">
-              <button id="submit-button" type="submit" class="btn btn-primary btn-block btn-flat btn-lg">Sign In</button>
+              <button id="submit-button" type="submit" class="btn btn-primary btn-block btn-flat btn-lg">Check</button>
           </div>
         </form>
       </div><!-- /.login-box-body -->
@@ -49,7 +49,7 @@ URL 2..."></textarea>
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Hover Data Table</h3>
+          <h3 class="box-title">URL List</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
           <table id="result-table" class="table table-bordered table-hover">
