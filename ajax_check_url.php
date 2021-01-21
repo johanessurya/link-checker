@@ -5,7 +5,8 @@ require 'vendor/autoload.php';
 $jsonError = [
     'id' => null,
     'url' => 'Please check your URL',
-    'status' => ''
+    'status' => '',
+    'is_error' => 1
 ];
 
 if (!isset($_GET['url'])) {
@@ -20,17 +21,34 @@ if (empty($url)) {
     die;
 }
 
+$statusCode = null;
+$statusName = null;
 try {
     $client = new GuzzleHttp\Client();
     $res = $client->request('GET', trim($url));
-    $status = $res->getStatusCode();
+    $statusCode = $res->getStatusCode();
+    $statusName = $res->getReasonPhrase();
 
     $value = [
         'id' => null,
         'url' => $url,
-        'status' => $status
+        'status' => $statusCode,
+        'status_name' => $statusName,
+        'is_true' => 0
     ];
-    echo json_encode($value);
+} catch(GuzzleHttp\Exception\ClientException $e) {
+    $statusCode = $e->getResponse()->getStatusCode();
+    $statusName = $e->getResponse()->getReasonPhrase();
+    $value = [
+        'id' => null,
+        'url' => $url,
+        'status' => $statusCode,
+        'status_name' => $statusName,
+        'is_true' => 0
+    ];
+
 } catch(\Exception $e) {
-    echo json_encode($jsonError);
+    $value = $jsonError;
 }
+
+echo json_encode($value);

@@ -2,8 +2,10 @@ var DataTableManager = function(datatableElement) {
     this.el = datatableElement;
     this.id = 0;
 
-    this.add = function(url, status) {
+    this.add = function(url, statusCode, statusName) {
         this.id++;
+
+        var status = statusCode + ' (' + statusName + ')';
         this.el.row.add([this.id, url, status]);
     }
 
@@ -34,7 +36,7 @@ var BatchAjax = function (urlList, dataTableManager) {
             var json = JSON.parse(data);
 
             if (json.status) {
-                manager.add(json.url, json.status);
+                manager.add(json.url, json.status, json.status_name);
                 manager.draw();
             }
 
